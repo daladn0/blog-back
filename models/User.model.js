@@ -7,8 +7,8 @@ const schema =  new Schema({
     avatar: { type: String },
     posts: [{ type: ObjectId, ref: 'Post' }],
     savedPosts: [{ type: ObjectId, ref: 'Post' }],
-    refreshToken: {type: ObjectId, ref: 'Token'},
-    role: [{ type: ObjectId, ref: 'Role' }]
+    refreshToken: {type: String},
+    roles: [{ type: String, ref: 'Role' }]
 })
 
 module.exports = model('User', schema)
