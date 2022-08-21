@@ -11,7 +11,6 @@ module.exports = (roles) => {
 
             roles.forEach( role => {
                 req.user.roles.forEach( userRole => {
-                    console.log(userRole, role)
                     if ( userRole === role ) hasRole = true
                 })
             } )

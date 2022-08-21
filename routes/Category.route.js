@@ -1,4 +1,4 @@
-const { body } = require('express-validator')
+const { body, param } = require('express-validator')
 const { Router } = require('express')
 const router = Router()
 const CategoryController = require('../controllers/Category.controller')
@@ -13,5 +13,23 @@ router.post(
     body('title').trim().isLength({min: CATEGORY_MIN_TITLE, max: CATEGORY_MAX_TITLE}).withMessage(`Category title should have from ${CATEGORY_MIN_TITLE} up to ${CATEGORY_MAX_TITLE} chars`),
     CategoryController.create
 )
+
+router.put(
+    '/:id',
+    authMiddleware,
+    roleMiddleware([ROLES.ADMIN]),
+    param('id', 'Id is not provided'),
+    body('title').trim().isLength({min: CATEGORY_MIN_TITLE, max: CATEGORY_MAX_TITLE}).withMessage(`Category title should have from ${CATEGORY_MIN_TITLE} up to ${CATEGORY_MAX_TITLE} chars`),
+    CategoryController.update
+)
+
+router.delete(
+    '/:id',
+    authMiddleware,
+    roleMiddleware([ROLES.ADMIN]),
+    param('id', 'Id is not provided'),
+    CategoryController.delete
+)
+
 
 module.exports = router

@@ -19,7 +19,6 @@ module.exports = (req, res, next) => {
         if ( !decodedToken ) throw ApiError.Forbidden()
 
         req.user = decodedToken
-        console.log(req.user)
         next()
     } catch(err) {
         next(err)
