@@ -38,12 +38,12 @@ class UserService {
     });
 
     if (!foundUser) {
-      throw ApiError.BadRequest("Invalid credentials");
+      throw ApiError.BadRequest("Incorrect credentials");
     }
 
     const isPasswordCorrect = bcrypt.compareSync(password, foundUser.password);
 
-    if (!isPasswordCorrect) throw ApiError.BadRequest("Invalid credentials");
+    if (!isPasswordCorrect) throw ApiError.BadRequest("Incorrect credentials");
 
     const userDto = new UserDTO(foundUser);
 
@@ -54,7 +54,7 @@ class UserService {
     await foundUser.save();
 
     return {
-      user: userDto,
+      user: {...userDto, avatar: foundUser.avatar},
       tokens,
     };
   }
