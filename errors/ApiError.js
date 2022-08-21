@@ -37,4 +37,12 @@ module.exports = class ApiError extends Error {
     static Internal(message) {
         return new ApiError(message, 500)
     }
+
+    /**
+     * Forbidden Error (403)
+     * @returns ApiError instance with 403 http status code
+     */
+    static Forbidden(){
+        return new ApiError('Forbidden', 403)
+    }
 }

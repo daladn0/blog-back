@@ -5,4 +5,10 @@ module.exports = {
         REFRESH: 'REFRESH'
     },
     USERNAME_MAX_LENGTH: 32,
+    CATEGORY_MIN_TITLE: 3,
+    CATEGORY_MAX_TITLE: 32,
+    ROLES: {
+        USER: 'USER',
+        ADMIN: 'ADMIN'
+    }
 }

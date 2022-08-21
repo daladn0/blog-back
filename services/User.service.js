@@ -5,6 +5,7 @@ const TokenService = require("./Token.service");
 const UserDTO = require("../dtos/userDTO");
 const bcrypt = require("bcryptjs");
 const { JWT_TOKEN_TYPES } = require("../constants");
+const { ROLES } = require('../constants')
 
 class UserService {
   async registration(username, email, password) {
@@ -18,7 +19,7 @@ class UserService {
       );
     }
 
-    const userRole = await RoleModel.findOne({ value: "USER" });
+    const userRole = await RoleModel.findOne({ value: ROLES.USER });
     const hashedPassword = bcrypt.hashSync(
       password,
       parseInt(process.env.SALT)
