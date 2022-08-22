@@ -45,4 +45,13 @@ module.exports = class ApiError extends Error {
     static Forbidden(){
         return new ApiError('Forbidden', 403)
     }
+
+    /**
+     * 404 Not Found error
+     * @param {string} message error message
+     * @returns ApiError instance with 404 http status code
+     */
+    static NotFound(message) {
+        return new ApiError(message, 404)
+    }
 }

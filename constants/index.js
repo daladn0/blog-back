@@ -1,14 +1,23 @@
 module.exports = {
+    ROLES: {
+        USER: 'USER',
+        ADMIN: 'ADMIN'
+    },
+
     PASSWORD_MIN_LENGTH: 6,
+    
     JWT_TOKEN_TYPES: {
         ACCESS: 'ACCESS',
         REFRESH: 'REFRESH'
     },
+    
     USERNAME_MAX_LENGTH: 32,
+    
     CATEGORY_MIN_TITLE: 3,
     CATEGORY_MAX_TITLE: 32,
-    ROLES: {
-        USER: 'USER',
-        ADMIN: 'ADMIN'
-    }
+
+    POST_TITLE_MIN_LENGTH: 14,
+    POST_TITLE_MAX_LENGTH: 100,
+    POST_BODY_MIN_LENGTH: 30,
+    POST_BODY_MAX_LENGTH: 5000,
 }

@@ -46,9 +46,9 @@ class UserService {
 
     if (!isPasswordCorrect) throw ApiError.BadRequest("Incorrect credentials");
 
-    const userDto = new UserDTO(foundUser);
-
-    const tokens = TokenService.generateTokens({ ...userDto });
+    const userDto = new UserDTO(foundUser)
+    
+    const tokens = TokenService.generateTokens({ id: foundUser._id, roles: foundUser.roles });
 
     foundUser.refreshToken = tokens.refreshToken;
 
@@ -76,7 +76,7 @@ class UserService {
 
     const userDto = new UserDTO(user);
 
-    const tokens = TokenService.generateTokens({ ...userDto });
+    const tokens = TokenService.generateTokens({ id: user._id, roles: user.roles });
 
     user.refreshToken = tokens.refreshToken;
 

@@ -5,7 +5,6 @@ const schema =  new Schema({
     email: { type: String, unique: true },
     password: { type: String },
     avatar: { type: String },
-    posts: [{ type: ObjectId, ref: 'Post' }],
     savedPosts: [{ type: ObjectId, ref: 'Post' }],
     refreshToken: {type: String},
     roles: [{ type: String, ref: 'Role' }]
