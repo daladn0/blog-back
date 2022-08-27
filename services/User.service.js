@@ -70,7 +70,7 @@ class UserService {
 
     if (!tokenData) throw ApiError.Unauthorized();
 
-    const user = await UserModel.findOne({ email: tokenData.email });
+    const user = await UserModel.findById(tokenData.id);
 
     if (!user) throw ApiError.BadRequest("User doesn't exist");
 
