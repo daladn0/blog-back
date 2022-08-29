@@ -58,6 +58,15 @@ class CategoryController {
             next(err)
         }
     }
+
+    async getAll(req, res, next) {
+        try {
+            const categories = await CategoryService.getAll()
+            res.send(categories)
+        } catch(err) {
+            next(err)
+        }
+    }
 }
 
 module.exports = new CategoryController

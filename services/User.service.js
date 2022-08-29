@@ -6,6 +6,7 @@ const UserDTO = require("../dtos/userDTO");
 const bcrypt = require("bcryptjs");
 const { JWT_TOKEN_TYPES } = require("../constants");
 const { ROLES } = require('../constants')
+const ObjectId = require('mongoose').Types.ObjectId
 
 class UserService {
   async registration(username, email, password) {
@@ -61,6 +62,7 @@ class UserService {
   }
 
   async refresh(refreshToken) {
+
     if (!refreshToken) throw ApiError.Unauthorized();
 
     const tokenData = TokenService.validateToken(
@@ -70,9 +72,9 @@ class UserService {
 
     if (!tokenData) throw ApiError.Unauthorized();
 
-    const user = await UserModel.findById(tokenData.id);
+    const user = await UserModel.findOne({refreshToken});
 
-    if (!user) throw ApiError.BadRequest("User doesn't exist");
+    if (!user) throw ApiError.Unauthorized();
 
     const userDto = new UserDTO(user);
 
@@ -83,7 +85,11 @@ class UserService {
     await user.save();
 
     return {
-      user: userDto,
+      user: {
+        email: user.email,
+        username: user.username,
+        avatar: user.avatar
+      },
       tokens,
     }
   }
@@ -91,6 +97,12 @@ class UserService {
   async logout(refreshToken) {
     await UserModel.updateOne({ refreshToken }, { $unset: { refreshToken: 1 } })
     return 
+  }
+
+  async findById(id) {
+    if ( !id || !ObjectId.isValid(id) ) throw ApiError.Internal('Invalid user id provided')
+
+    return await UserModel.findById(id)
   }
 }
 

@@ -32,7 +32,6 @@ const startApp = async () => {
             console.log(`Up and running on port ${PORT}`)
         })
     } catch(e) {
-        console.log(e)
         process.exit(1)
     }
 }

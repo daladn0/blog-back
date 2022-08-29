@@ -6,6 +6,11 @@ const authMiddleware = require('../middlewares/Auth.middleware')
 const roleMiddleware = require('../middlewares/Role.middleware')
 const { CATEGORY_MIN_TITLE, CATEGORY_MAX_TITLE, ROLES } = require('../constants')
 
+router.get(
+    '/',
+    CategoryController.getAll
+)
+
 router.post(
     '/',
     authMiddleware,
@@ -30,6 +35,5 @@ router.delete(
     param('id', 'Id is not provided'),
     CategoryController.delete
 )
-
 
 module.exports = router

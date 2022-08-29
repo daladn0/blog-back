@@ -36,6 +36,10 @@ class CategoryService {
 
         await CategoryModel.findByIdAndRemove(id)
     }
+
+    async getAll() {
+        return await CategoryModel.find()
+    }
 }
 
 module.exports = new CategoryService()

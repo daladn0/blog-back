@@ -1,5 +1,4 @@
 const jwt = require("jsonwebtoken");
-const TokenModel = require("../models/Token.model");
 const { JWT_TOKEN_TYPES } = require("../constants");
 const ApiError = require("../errors/ApiError");
 
